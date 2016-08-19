@@ -1,0 +1,57 @@
+<!doctype html>
+<html ng-app="taskListApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="tasklist.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+      .done-true{
+          text-decoration: line-through;
+        }
+    </style>
+  </head>
+  <body>
+      <div class="container">
+          <div ng-controller="TaskListController as taskList">
+
+
+                <div class="col-md-6">
+
+                  <h2 class="text-muted ">Task List</h2>
+                  <h4 class="text-info ">{{taskList.tasksNotDone()}} of {{taskList.list.length}}</h4>
+
+                  <a class="label-control" ng-click="taskList.Archive()"
+                  style="text-decoration:none; text-align:left;">[ Archive ]</a>
+
+                </div>
+
+            <div class="col-md-9">
+                <ul>
+                  <li ng-repeat="task in taskList.list" >
+                    <label class="checkbox">
+                      <input type="checkbox" ng-model="task.done">
+                      <span class="done-{{task.done}}">{{task.taskName}}</span>
+                    </label>
+                  </li>
+                </ul>
+            </div>
+
+            <form class="form" ng-submit="taskList.addTask()" method="post">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="txtNewTask">New task</label>
+                  <input  class="form-control" type="text" id="txtNewTask"
+                      ng-model="taskList.txtNewTask" required="string"
+                      placeholder="add a new task here">
+                </div>
+                  <input type="submit" style="display:inline-block;"
+                    class="btn btn-info" value="Add Task">
+              </div>
+            </form>
+
+        </div> <!--Controller-->
+      </div>
+  </body>
+</html>

@@ -1,4 +1,6 @@
 var io = require('socket.io');  
+var mongoose = require('mongoose');
+var Process = mongoose.model('Process');
 
 var socketEvents = function(server){
     
@@ -36,6 +38,13 @@ var socketEvents = function(server){
             data.status = readyStatus;
             data.remainingTime = data.processingTime; 
             processList.push(data);
+		/******/
+		var process = new Process(data);
+		post.save(function(err, processs){
+			console.log(err, "error");
+			consile.log(processs, "process");
+		});
+		/*****/
     
             sendProcessList(socket);
             socket.broadcast.emit('postNewProcessSuccess', null);  

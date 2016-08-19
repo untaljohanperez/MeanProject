@@ -4,6 +4,21 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var MongoClient = require('mongodb').MongoClient;
+var assert = require('assert');
+require('./models/Process');
+//mongoose.connect('mongodb://localhost:27017/test');
+
+
+var url = 'mongodb://localhost:27017/test';
+
+MongoClient.connect(url, function(err, db){
+	assert.equal(null, err);
+	console.log("connected succesfully to server ");
+	db.close();
+});
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

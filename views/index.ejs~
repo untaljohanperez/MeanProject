@@ -30,7 +30,7 @@
 				
 			</div>	
 		</div>
-		<div class="well"> 
+		<div class="well" ng-if="processList.legth > 0">
 			<div class="row">
 				<div class="col-md-12">
 					<h1 class="text-primary">Queue Process</h1>

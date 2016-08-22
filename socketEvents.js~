@@ -39,13 +39,15 @@ var socketEvents = function(server){
             data.status = readyStatus;
             data.remainingTime = data.processingTime; 
             processList.push(data);
-
-    	    /**Insert in MongoDB***/
-    	    var newProcess = new Process(data);
-	    var promise = newProcess.save();
-	    promise.then( doc => console.log(doc) );
-    	    /*****/
-
+	/**
+	    console.log("before");
+		var newProcess = new Process(data);
+		var promise = newProcess.save();
+		promise.then( doc =>{
+			console.log(doc);
+		});
+	    console.log("after");
+	/*****/
             socket.emit('sendProcessList', processList);
 	    socket.broadcast.emit('sendProcessList', processList);    
             //sendProcessList(socket);

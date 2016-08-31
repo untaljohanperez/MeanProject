@@ -37,7 +37,7 @@ var socketEvents = function(server){
             data.remainingTime = data.processingTime; 
             processList.push(data);
     
-            sendProcessList(socket);
+           socket.broadcast.emit('sendProcessList', processList);    
             socket.broadcast.emit('postNewProcessSuccess', null);  
             process.stdout.write(data.process + ': ' + data.processingTime);  
         });
